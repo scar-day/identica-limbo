@@ -1,70 +1,46 @@
-name: Build Dev
+name: Java CI
 
 on:
   push:
     branches:
       - main
-    tags-ignore:
-      - '**'
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   build:
-    name: Build & Package Dev
+    if: "! contains(toJSON(github.event.commits.*.message), '[SKIP-CI]')"
+
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    strategy:
+      matrix:
+        build-java-version: [ 21 ]
 
-      - name: Set up Java 21
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ matrix.build-java-version }}
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: ${{ matrix.build-java-version }}
+          cache: 'gradle'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-
-      - name: Compute Dev Version
-        id: dev_version
+      - name: Update Gradle Dev Version to 1.0.0-dev#${{ matrix.build-java-version }}
         run: |
-          BASE_VERSION=$(grep "^version=" gradle.properties | cut -d'=' -f2 | tr -d '[:space:]')
           COMMIT_HASH="${GITHUB_SHA::7}"
-          DEV_VERSION="${BASE_VERSION}-dev#${COMMIT_HASH}"
-          echo "version=${DEV_VERSION}" >> $GITHUB_OUTPUT
-          echo "commit_hash=${COMMIT_HASH}" >> $GITHUB_OUTPUT
-          echo "Dev version is: ${DEV_VERSION}"
+          BASE_VERSION=$(grep "^version=" gradle.properties | cut -d'=' -f2 | tr -d '[:space:]')
+          sed -i "s|^version=.*|version=${BASE_VERSION}-dev#${COMMIT_HASH}|" gradle.properties
+          cat gradle.properties
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew clean check build -Pversion="${{ steps.dev_version.outputs.version }}"
+        run: ./gradlew clean check build
 
-      - name: Upload Build Artifacts
+      - name: Upload artifact for Java ${{ matrix.build-java-version }}
         uses: actions/upload-artifact@v4
         with:
-          name: IdenticaLimbo-${{ steps.dev_version.outputs.version }}
+          name: IdenticaLimbo-java${{ matrix.build-java-version }}
           path: build/IdenticaLimbo-*.jar
-          if-no-files-found: error
-
-      - name: Update Dev Pre-Release
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: softprops/action-gh-release@v2
-        continue-on-error: true
-        with:
-          tag_name: dev
-          name: "Identica Limbo Dev (${{ steps.dev_version.outputs.version }})"
-          body: |
-            Automated development build for commit `${{ github.sha }}`.
-            
-            **Version:** `${{ steps.dev_version.outputs.version }}`
-          prerelease: true
-          files: build/IdenticaLimbo-*.jar
