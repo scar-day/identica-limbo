@@ -3,6 +3,3 @@
 **/run/
 /.idea/
 *.iml
-
-gradlew.bat
-gradlew
