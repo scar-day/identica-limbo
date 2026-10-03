@@ -7,7 +7,7 @@ plugins {
 dependencies {
     implementation(project(":common"))
     implementation(project(":limbo-adapter-command"))
-    implementation(project(":limbo-provider-picolimbo"))
+    implementation(project(":providers:picolimbo"))
     compileOnly(libs.bungeecord.api)
     compileOnly(libs.identica.api)
     implementation(libs.configura)
@@ -39,7 +39,7 @@ val internalModules = listOf(
     project(":api"),
     project(":common"),
     project(":limbo-adapter-command"),
-    project(":limbo-provider-picolimbo")
+    project(":providers:picolimbo")
 )
 
 tasks.named<Jar>("jar") {
