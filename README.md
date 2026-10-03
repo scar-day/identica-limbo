@@ -2,10 +2,11 @@
 
 [![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://adoptium.net/)
 [![Velocity](https://img.shields.io/badge/Velocity-3.5.0--SNAPSHOT-00dc82.svg)](https://papermc.io/software/velocity)
+[![BungeeCord](https://img.shields.io/badge/BungeeCord-1.21--R0.4-yellow.svg)](https://www.spigotmc.org/)
 [![Identica](https://img.shields.io/badge/Identica-Addon-blue.svg)](https://github.com/whereareiam)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A high-performance **Velocity** proxy addon for **Identica** that dynamically manages virtual Limbo servers. It isolates unauthenticated or pending players within lightweight Limbo instances while minimizing resource overhead.
+A high-performance **Velocity** and **BungeeCord** proxy addon for **Identica** that dynamically manages virtual Limbo servers. It isolates unauthenticated or pending players within lightweight Limbo instances while minimizing resource overhead.
 
 ---
 
@@ -34,25 +35,24 @@ A high-performance **Velocity** proxy addon for **Identica** that dynamically ma
 - **Identica Command Integration**: Deeply integrated into Identica's command dispatch tree under `/identica limbo`.
 - **Public API (`IdenticaLimboAPI`)**: Non-blocking asynchronous API for player routing, bulk transfers during maintenance/reboots, and live telemetry.
 - **Semicolon Coordinate Format**: Clean, human-readable spawn positions and rotations (`"X;Y;Z"` and `"Yaw;Pitch"`).
-- **Zero Runtime Reflection Overhead**: Native Velocity and Adventure MiniMessage support with full JVM metric reporting.
+- **Multi-Platform Support**: Native support for both **Velocity** and **BungeeCord** (Waterfall) proxies.
 
 ---
 
 ## Requirements
 
-- **Proxy**: [Velocity 3.4.0+](https://papermc.io/software/velocity)
+- **Proxy**: [Velocity 3.4.0+](https://papermc.io/software/velocity) or [BungeeCord / Waterfall 1.20+](https://www.spigotmc.org/)
 - **Runtime**: **Java 21** or newer
 - **Core Dependency**: **Identica** plugin must be installed and enabled on the proxy
 - **Network**: Outgoing HTTPS access to GitHub (required only if `autoDownload: true` is enabled for PicoLimbo)
-
-> [!NOTE]
-> Identica Limbo is designed primarily for Velocity. The `bungeecord` module is currently a stub placeholder and does not run standalone.
 
 ---
 
 ## Installation
 
-1. Build or download the latest artifact: `build/IdenticaLimbo-VELOCITY-1.0.0.jar`.
+1. Build or download the latest artifact matching your proxy platform:
+   - Velocity: `build/IdenticaLimbo-VELOCITY-1.0.0.jar`
+   - BungeeCord: `build/IdenticaLimbo-BUNGEECORD-1.0.0.jar`
 2. Drop the JAR file into your proxy's `plugins/` directory alongside `Identica`.
 3. Start the proxy once to generate initial configurations, then stop it.
 4. Customize `plugins/identica-limbo/config.yml` and server definitions in `plugins/identica-limbo/limbo/`.

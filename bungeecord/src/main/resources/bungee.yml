@@ -1,0 +1,6 @@
+name: IdenticaLimbo
+version: '${version}'
+main: dev.scarday.identicalimbo.bungeecord.IdenticaLimboPlugin
+author: ScarDay
+depends:
+  - Identica

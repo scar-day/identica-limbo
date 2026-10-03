@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     implementation(libs.configura)
+    implementation(libs.jackson.databind)
     compileOnly(libs.identica.api)
     compileOnly(libs.adventure.api)
     compileOnly(libs.lombok)

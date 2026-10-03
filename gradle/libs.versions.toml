@@ -7,12 +7,14 @@ lombok = "1.18.42"
 adventure = "4.26.1"
 jackson = "2.20.0"
 annotations = "26.0.2"
+bungeecord-api = "1.21-R0.4"
 
 run-task = "3.1.0"
 idea-ext = "1.4.1"
 
 [libraries]
 velocity-api = { module = "com.velocitypowered:velocity-api", version.ref = "velocity-api" }
+bungeecord-api = { module = "net.md-5:bungeecord-api", version.ref = "bungeecord-api" }
 identica-api = { module = "me.whereareiam.identica:api", version.ref = "identica-api" }
 keystone = { module = "me.whereareiam:keystone", version.ref = "keystone" }
 configura = { module = "me.whereareiam:configura", version.ref = "configura" }
