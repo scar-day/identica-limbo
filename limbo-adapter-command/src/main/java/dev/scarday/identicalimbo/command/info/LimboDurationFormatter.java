@@ -1,6 +1,7 @@
 package dev.scarday.identicalimbo.command.info;
 
 import dev.scarday.identicalimbo.common.config.LimboDurationMessages;
+
 import java.time.Duration;
 import java.time.Instant;
 
@@ -10,13 +11,11 @@ public final class LimboDurationFormatter {
     private static final long SECONDS_PER_DAY = 86400L;
 
     public String formatDuration(Instant startedAt, boolean running, LimboDurationMessages messages, String fallback) {
-        if (!running || startedAt == null) {
-            return fallback;
-        }
+        if (!running || startedAt == null) return fallback;
+
         Duration duration = Duration.between(startedAt, Instant.now());
-        if (duration.isNegative() || duration.isZero()) {
-            return messages.getZero();
-        }
+        if (duration.isNegative() || duration.isZero()) return messages.getZero();
+
         long totalSeconds = duration.toSeconds();
         long days = totalSeconds / SECONDS_PER_DAY;
         long hours = (totalSeconds % SECONDS_PER_DAY) / SECONDS_PER_HOUR;

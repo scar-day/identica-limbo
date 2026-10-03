@@ -13,12 +13,8 @@ final class CommandMessageRenderer {
     }
 
     static Component render(String message, Map<String, String> placeholders) {
-        if (message == null || message.isBlank()) {
-            return Component.empty();
-        }
-        if (placeholders == null || placeholders.isEmpty()) {
-            return MiniMessage.miniMessage().deserialize(message);
-        }
+        if (message == null || message.isBlank()) return Component.empty();
+        if (placeholders == null || placeholders.isEmpty()) return MiniMessage.miniMessage().deserialize(message);
 
         List<TagResolver> resolvers = new ArrayList<>(placeholders.size());
         for (Map.Entry<String, String> entry : placeholders.entrySet()) {

@@ -11,9 +11,8 @@ public final class LimboPlayerFormatter {
 
     public String formatPlayers(VirtualServerStatus status, LimboPlayerMessages messages) {
         int online = status.onlinePlayers();
-        if (online <= 0) {
-            return messages.getEmpty();
-        }
+        if (online <= 0) return messages.getEmpty();
+
         if (status.playerNames() != null && !status.playerNames().isEmpty()) {
             String names = String.join(DELIMITER, status.playerNames());
             return messages.getWithNames()
@@ -25,9 +24,7 @@ public final class LimboPlayerFormatter {
     }
 
     public String formatPlayerList(VirtualServerStatus status, LimboPlayerMessages messages) {
-        if (status.playerNames() != null && !status.playerNames().isEmpty()) {
-            return String.join(DELIMITER, status.playerNames());
-        }
+        if (status.playerNames() != null && !status.playerNames().isEmpty()) return String.join(DELIMITER, status.playerNames());
         return messages.getListEmpty();
     }
 }
