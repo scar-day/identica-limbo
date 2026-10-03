@@ -56,12 +56,12 @@ public class PicoLimboServer implements ManagedLimboServer {
 
     @Override
     public String dimension() {
-        return settings != null ? settings.dimension() : null;
+        return settings != null && settings.dimension() != null ? settings.dimension().getId() : null;
     }
 
     @Override
     public String gameMode() {
-        return settings != null ? settings.defaultGameMode() : null;
+        return settings != null && settings.defaultGameMode() != null ? settings.defaultGameMode().getId() : null;
     }
 
     @Override

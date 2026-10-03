@@ -8,6 +8,9 @@ import dev.scarday.identicalimbo.provider.picolimbo.config.PicoLimboPaths;
 import dev.scarday.identicalimbo.provider.picolimbo.config.PicoLimboRelease;
 import dev.scarday.identicalimbo.provider.picolimbo.config.PicoLimboSpawn;
 import dev.scarday.identicalimbo.provider.picolimbo.config.PicoLimboWorld;
+import dev.scarday.identicalimbo.provider.picolimbo.config.enums.Dimension;
+import dev.scarday.identicalimbo.provider.picolimbo.config.enums.Forwarding;
+import dev.scarday.identicalimbo.provider.picolimbo.config.enums.Gamemode;
 import java.nio.file.Path;
 
 public record PicoLimboSettings(
@@ -20,13 +23,13 @@ public record PicoLimboSettings(
         String schematic,
         String welcomeMessage,
         String actionBar,
-        String defaultGameMode,
-        String dimension,
+        Gamemode defaultGameMode,
+        Dimension dimension,
         double[] spawnPosition,
         double[] spawnRotation,
         int viewDistance,
         boolean lockTime,
-        String forwardingMethod,
+        Forwarding forwardingMethod,
         String forwardingSecret,
         boolean logging
 ) {

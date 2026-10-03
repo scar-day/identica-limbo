@@ -1,7 +1,7 @@
 package dev.scarday.identicalimbo.provider.picolimbo.config;
 
-import java.util.Locale;
-import java.util.Set;
+import dev.scarday.identicalimbo.provider.picolimbo.config.enums.Dimension;
+import dev.scarday.identicalimbo.provider.picolimbo.config.enums.Gamemode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,8 +11,8 @@ public class PicoLimboWorld {
     private String schematic = "";
     private String welcomeMessage = "";
     private String actionBar = "";
-    private String gameMode = "spectator";
-    private String dimension = "overworld";
+    private Gamemode gameMode = Gamemode.SPECTATOR;
+    private Dimension dimension = Dimension.OVERWORLD;
     private PicoLimboSpawn spawn = new PicoLimboSpawn();
     private int viewDistance = 2;
     private boolean lockTime = false;
@@ -24,15 +24,11 @@ public class PicoLimboWorld {
         if (viewDistance < 1) {
             throw new IllegalArgumentException("picolimbo.world.viewDistance must be at least 1");
         }
-        if (gameMode == null || !Set.of("survival", "creative", "adventure", "spectator")
-                .contains(gameMode.toLowerCase(Locale.ROOT))) {
-            throw new IllegalArgumentException(
-                    "picolimbo.world.gameMode must be survival, creative, adventure or spectator"
-            );
+        if (gameMode == null) {
+            throw new IllegalArgumentException("picolimbo.world.gameMode must not be null");
         }
-        if (dimension == null || !Set.of("overworld", "nether", "end")
-                .contains(dimension.toLowerCase(Locale.ROOT))) {
-            throw new IllegalArgumentException("picolimbo.world.dimension must be overworld, nether or end");
+        if (dimension == null) {
+            throw new IllegalArgumentException("picolimbo.world.dimension must not be null");
         }
     }
 }

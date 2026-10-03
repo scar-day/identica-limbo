@@ -21,9 +21,9 @@ public final class PicoLimboConfigWriter {
                 .append("bind = ").append(quote(definition.host() + ":" + definition.port())).append("\n")
                 .append("welcome_message = ").append(quote(settings.welcomeMessage())).append("\n")
                 .append("action_bar = ").append(quote(settings.actionBar())).append("\n")
-                .append("default_game_mode = ").append(quote(settings.defaultGameMode())).append("\n\n")
+                .append("default_game_mode = ").append(quote(settings.defaultGameMode().getId())).append("\n\n")
                 .append("[world]\n")
-                .append("dimension = ").append(quote(settings.dimension())).append("\n")
+                .append("dimension = ").append(quote(settings.dimension().getId())).append("\n")
                 .append("spawn_position = ").append(array(settings.spawnPosition())).append("\n")
                 .append("spawn_rotation = ").append(array(settings.spawnRotation())).append("\n\n")
                 .append("[world.experimental]\n")
@@ -31,12 +31,12 @@ public final class PicoLimboConfigWriter {
                 .append("lock_time = ").append(settings.lockTime()).append("\n")
                 .append("schematic_file = ").append(quote(schematic)).append("\n\n")
                 .append("[forwarding]\n")
-                .append("method = ").append(quote(settings.forwardingMethod())).append("\n");
+                .append("method = ").append(quote(settings.forwardingMethod().getId())).append("\n");
 
-        if (settings.forwardingMethod().equalsIgnoreCase("MODERN")) {
-            toml.append("secret = ").append(quote(settings.forwardingSecret())).append("\n");
-        } else if (settings.forwardingMethod().equalsIgnoreCase("BUNGEE_GUARD")) {
-            toml.append("tokens = [").append(quote(settings.forwardingSecret())).append("]\n");
+        switch (settings.forwardingMethod()) {
+            case MODERN -> toml.append("secret = ").append(quote(settings.forwardingSecret())).append("\n");
+            case BUNGEE_GUARD -> toml.append("tokens = [").append(quote(settings.forwardingSecret())).append("]\n");
+            case NONE -> {}
         }
 
         Files.writeString(path, toml, StandardCharsets.UTF_8);

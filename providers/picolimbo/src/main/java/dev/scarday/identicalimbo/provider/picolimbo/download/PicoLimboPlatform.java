@@ -4,9 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import java.util.Locale;
 
 public final class PicoLimboPlatform {
-    private PicoLimboPlatform() {
-    }
-
     public static String assetName() {
         String os = System.getProperty("os.name").toLowerCase(Locale.ROOT);
         String arch = System.getProperty("os.arch").toLowerCase(Locale.ROOT);

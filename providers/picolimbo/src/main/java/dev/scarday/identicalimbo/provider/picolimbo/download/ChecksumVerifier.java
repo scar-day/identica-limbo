@@ -10,9 +10,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HexFormat;
 
 public final class ChecksumVerifier {
-    private ChecksumVerifier() {
-    }
-
     public static void verifySha256(Path file, String digest) throws IOException {
         if (digest == null || !digest.startsWith("sha256:")) {
             return;

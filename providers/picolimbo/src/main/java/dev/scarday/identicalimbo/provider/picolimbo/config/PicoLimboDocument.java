@@ -1,7 +1,5 @@
 package dev.scarday.identicalimbo.provider.picolimbo.config;
 
-import java.util.Locale;
-import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,9 +20,8 @@ public class PicoLimboDocument {
         if (world == null) world = new PicoLimboWorld();
         if (forwarding == null) forwarding = new PicoLimboForwarding();
         world.validate();
-        if (!Set.of("NONE", "MODERN", "BUNGEE_GUARD")
-                .contains(forwarding.getMethod().toUpperCase(Locale.ROOT))) {
-            throw new IllegalArgumentException("picolimbo.forwarding.method must be NONE, MODERN or BUNGEE_GUARD");
+        if (forwarding.getMethod() == null) {
+            throw new IllegalArgumentException("picolimbo.forwarding.method must not be null");
         }
         if (release.getVersion() == null || release.getVersion().isBlank()) {
             throw new IllegalArgumentException("picolimbo.release.version must not be blank");

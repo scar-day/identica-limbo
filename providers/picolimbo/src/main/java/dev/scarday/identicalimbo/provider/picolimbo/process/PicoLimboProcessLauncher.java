@@ -9,9 +9,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
 public final class PicoLimboProcessLauncher {
-    private PicoLimboProcessLauncher() {
-    }
-
     public static Process startProcess(
             Path executable,
             Path config,

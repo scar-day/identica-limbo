@@ -8,9 +8,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public final class PicoLimboArchiveExtractor {
-    private PicoLimboArchiveExtractor() {
-    }
-
     public static void extractExecutable(Path archive, Path destination, String executableName)
             throws IOException, InterruptedException {
         if (archive.getFileName().toString().endsWith(".zip")) {
