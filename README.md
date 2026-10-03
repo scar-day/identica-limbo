@@ -50,8 +50,8 @@ flowchart TD
 - **`:common`**: Shared core runtime, config loader, abstract service, defaults contributors, and logging.
 - **`:limbo-adapter-command`**: Command adapter for Identica's command dispatch tree.
 - **`:providers:picolimbo` (`providers/picolimbo`)**: Built-in PicoLimbo provider implementation with isolated modules.
-- **`:velocity`**: Platform module for Velocity proxies producing `IdenticaLimbo-VELOCITY-1.0.0.jar`.
-- **`:bungeecord`**: Platform module for BungeeCord / Waterfall proxies producing `IdenticaLimbo-BUNGEECORD-1.0.0.jar`.
+- **`:velocity`**: Platform module for Velocity proxies producing `IdenticaLimbo-VELOCITY-2.0.0.jar`.
+- **`:bungeecord`**: Platform module for BungeeCord / Waterfall proxies producing `IdenticaLimbo-BUNGEECORD-2.0.0.jar`.
 
 ---
 
@@ -64,8 +64,8 @@ flowchart TD
 
 ### Installation
 1. Download or build the artifact matching your proxy:
-   - **Velocity**: `build/IdenticaLimbo-VELOCITY-1.0.0.jar`
-   - **BungeeCord**: `build/IdenticaLimbo-BUNGEECORD-1.0.0.jar`
+   - **Velocity**: `build/IdenticaLimbo-VELOCITY-2.0.0.jar`
+   - **BungeeCord**: `build/IdenticaLimbo-BUNGEECORD-2.0.0.jar`
 2. Place the JAR into your proxy's `plugins/` folder.
 3. Start the proxy to generate default configuration files:
    - `plugins/identica-limbo/config.yml`
@@ -100,8 +100,8 @@ Compiled JARs will be generated in the root `build/` directory:
 
 ```text
 build/
-├── IdenticaLimbo-VELOCITY-1.0.0.jar
-└── IdenticaLimbo-BUNGEECORD-1.0.0.jar
+├── IdenticaLimbo-VELOCITY-2.0.0.jar
+└── IdenticaLimbo-BUNGEECORD-2.0.0.jar
 ```
 
 To run a test proxy server directly:

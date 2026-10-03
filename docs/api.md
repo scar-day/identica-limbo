@@ -23,22 +23,32 @@ Add the API dependency to your project:
 ```kotlin
 repositories {
     mavenCentral()
+    maven("https://registry.wctx.lol/maven/public-maven")
     maven("https://repo.papermc.io/repository/maven-public/")
 }
 
 dependencies {
-    compileOnly("dev.scarday:identicalimbo-api:1.0.0")
+    compileOnly("dev.scarday:identica-limbo-api:2.0.0")
 }
 ```
 
 ### Maven (`pom.xml`)
 ```xml
-<dependency>
-    <groupId>dev.scarday</groupId>
-    <artifactId>identicalimbo-api</artifactId>
-    <version>1.0.0</version>
-    <scope>provided</scope>
-</dependency>
+<repositories>
+    <repository>
+        <id>wctx-registry</id>
+        <url>https://registry.wctx.lol/maven/public-maven</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>dev.scarday</groupId>
+        <artifactId>identica-limbo-api</artifactId>
+        <version>2.0.0</version>
+        <scope>provided</scope>
+    </dependency>
+</dependencies>
 ```
 
 ---
