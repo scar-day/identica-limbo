@@ -2,6 +2,7 @@ import org.gradle.jvm.tasks.Jar
 
 plugins {
     `java-library`
+    alias(libs.plugins.run.waterfall)
 }
 
 dependencies {
@@ -25,6 +26,12 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks {
+    runWaterfall {
+        waterfallVersion("1.21")
+    }
 }
 
 tasks.processResources {
