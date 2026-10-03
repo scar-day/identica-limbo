@@ -7,6 +7,7 @@ plugins {
 dependencies {
     implementation(project(":common"))
     implementation(project(":limbo-adapter-command"))
+    implementation(project(":limbo-provider-picolimbo"))
     compileOnly(libs.bungeecord.api)
     compileOnly(libs.identica.api)
     implementation(libs.configura)
@@ -34,7 +35,12 @@ tasks.processResources {
     }
 }
 
-val internalModules = listOf(project(":api"), project(":common"), project(":limbo-adapter-command"))
+val internalModules = listOf(
+    project(":api"),
+    project(":common"),
+    project(":limbo-adapter-command"),
+    project(":limbo-provider-picolimbo")
+)
 
 tasks.named<Jar>("jar") {
     archiveFileName.set("IdenticaLimbo-BUNGEECORD-${project.version}.jar")

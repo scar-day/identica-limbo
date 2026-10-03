@@ -6,6 +6,7 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import dev.scarday.identicalimbo.api.provider.ServerRegistrar;
 import dev.scarday.identicalimbo.common.AbstractLimboService;
+import dev.scarday.identicalimbo.provider.picolimbo.PicoLimboProvider;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.UUID;
@@ -19,6 +20,7 @@ public final class VelocityLimboService extends AbstractLimboService {
     public VelocityLimboService(ProxyServer proxyServer, Path dataDirectory, Configura configura, Logger logger) {
         super(dataDirectory, configura, new VelocityLimboLogger(logger));
         this.proxyServer = proxyServer;
+        providerRegistry.register(new PicoLimboProvider(this.logger));
     }
 
     @Override

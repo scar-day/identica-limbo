@@ -2,6 +2,7 @@ package dev.scarday.identicalimbo.bungeecord.platform;
 
 import dev.scarday.identicalimbo.api.provider.ServerRegistrar;
 import dev.scarday.identicalimbo.common.AbstractLimboService;
+import dev.scarday.identicalimbo.provider.picolimbo.PicoLimboProvider;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.UUID;
@@ -18,6 +19,7 @@ public final class BungeeCordLimboService extends AbstractLimboService {
     public BungeeCordLimboService(ProxyServer proxyServer, Path dataDirectory, Configura configura, Logger logger) {
         super(dataDirectory, configura, new BungeeCordLimboLogger(logger));
         this.proxyServer = proxyServer;
+        providerRegistry.register(new PicoLimboProvider(this.logger));
     }
 
     @Override

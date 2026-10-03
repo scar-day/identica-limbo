@@ -1,8 +1,7 @@
-package dev.scarday.identicalimbo.common.provider.picolimbo;
+package dev.scarday.identicalimbo.provider.picolimbo;
 
 import dev.scarday.identicalimbo.api.VirtualServerDefinition;
 import dev.scarday.identicalimbo.api.provider.ManagedLimboServer;
-import dev.scarday.identicalimbo.common.PicoLimboSettings;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;

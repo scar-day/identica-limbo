@@ -1,4 +1,4 @@
-package dev.scarday.identicalimbo.common.config;
+package dev.scarday.identicalimbo.provider.picolimbo.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;

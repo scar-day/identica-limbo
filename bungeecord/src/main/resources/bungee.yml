@@ -2,5 +2,5 @@ name: IdenticaLimbo
 version: '${version}'
 main: dev.scarday.identicalimbo.bungeecord.IdenticaLimboPlugin
 author: ScarDay
-depends:
-  - Identica
+depends: [Identica]
+description: Dynamic virtual Limbo servers addon for Identica on BungeeCord

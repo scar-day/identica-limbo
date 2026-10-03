@@ -1,4 +1,4 @@
-package dev.scarday.identicalimbo.common.config;
+package dev.scarday.identicalimbo.provider.picolimbo.config;
 
 import java.util.Locale;
 import java.util.Set;

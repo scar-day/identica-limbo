@@ -1,14 +1,15 @@
-package dev.scarday.identicalimbo.common.provider.picolimbo;
+package dev.scarday.identicalimbo.provider.picolimbo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.scarday.identicalimbo.api.LimboProviderType;
 import dev.scarday.identicalimbo.api.VirtualServerDefinition;
 import dev.scarday.identicalimbo.api.provider.LimboProvider;
 import dev.scarday.identicalimbo.api.provider.LimboServerContext;
 import dev.scarday.identicalimbo.api.provider.ManagedLimboServer;
-import dev.scarday.identicalimbo.common.PicoLimboSettings;
-import dev.scarday.identicalimbo.common.config.PicoLimboDocument;
+import dev.scarday.identicalimbo.common.config.VirtualServerDefaults;
 import dev.scarday.identicalimbo.common.config.VirtualServerDocument;
 import dev.scarday.identicalimbo.common.logging.LimboLogger;
+import dev.scarday.identicalimbo.provider.picolimbo.config.PicoLimboDocument;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -16,6 +17,16 @@ import java.nio.file.Path;
 import java.time.Instant;
 
 public class PicoLimboProvider implements LimboProvider {
+    private static final ObjectMapper MAPPER = new ObjectMapper();
+
+    static {
+        VirtualServerDefaults.registerContributor(doc -> {
+            if (doc.getExtensions() != null) {
+                doc.getExtensions().putIfAbsent("picolimbo", new PicoLimboDocument());
+            }
+        });
+    }
+
     private final LimboLogger logger;
     private final PicoLimboDownloader downloader;
 
@@ -33,11 +44,23 @@ public class PicoLimboProvider implements LimboProvider {
         return LimboProviderType.PICOLIMBO;
     }
 
+    public static PicoLimboDocument resolveDocument(Object rawDoc) {
+        if (rawDoc instanceof VirtualServerDocument doc) {
+            Object rawPico = doc.getExtensions().get("picolimbo");
+            if (rawPico instanceof PicoLimboDocument pico) {
+                return pico;
+            }
+            if (rawPico != null) {
+                return MAPPER.convertValue(rawPico, PicoLimboDocument.class);
+            }
+        }
+        return new PicoLimboDocument();
+    }
+
     @Override
     public ManagedLimboServer createServer(VirtualServerDefinition definition, LimboServerContext context)
             throws Exception {
-        VirtualServerDocument doc = (VirtualServerDocument) context.document();
-        PicoLimboDocument pico = doc != null && doc.getPicolimbo() != null ? doc.getPicolimbo() : new PicoLimboDocument();
+        PicoLimboDocument pico = resolveDocument(context.document());
         pico.validate();
 
         PicoLimboDocument.Paths paths = pico.getPaths();

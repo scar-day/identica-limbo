@@ -12,7 +12,6 @@ import me.whereareiam.configura.ConfigDocument;
 @Setter
 public final class VirtualServerDocument extends ConfigDocument {
     private ServerDocument server = new ServerDocument();
-    private PicoLimboDocument picolimbo = new PicoLimboDocument();
     private Map<String, Object> extensions = new HashMap<>();
 
     @JsonAnySetter

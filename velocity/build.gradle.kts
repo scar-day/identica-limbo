@@ -10,6 +10,7 @@ plugins {
 dependencies {
     implementation(project(":common"))
     implementation(project(":limbo-adapter-command"))
+    implementation(project(":limbo-provider-picolimbo"))
     compileOnly(libs.velocity.api)
     compileOnly(libs.identica.api)
     implementation(libs.configura)
@@ -36,7 +37,12 @@ val generateTemplates = tasks.register<Copy>("generateTemplates") {
 
 sourceSets.main.configure { java.srcDir(generateTemplates.map { it.outputs }) }
 
-val internalModules = listOf(project(":api"), project(":common"), project(":limbo-adapter-command"))
+val internalModules = listOf(
+    project(":api"),
+    project(":common"),
+    project(":limbo-adapter-command"),
+    project(":limbo-provider-picolimbo")
+)
 
 
 tasks.named<Jar>("jar") {

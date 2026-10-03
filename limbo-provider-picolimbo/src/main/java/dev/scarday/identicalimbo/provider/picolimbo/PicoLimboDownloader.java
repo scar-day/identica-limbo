@@ -1,8 +1,7 @@
-package dev.scarday.identicalimbo.common.provider.picolimbo;
+package dev.scarday.identicalimbo.provider.picolimbo;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.scarday.identicalimbo.common.PicoLimboSettings;
 import dev.scarday.identicalimbo.common.logging.LimboLogger;
 import java.io.IOException;
 import java.io.InputStream;

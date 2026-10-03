@@ -13,7 +13,6 @@ import dev.scarday.identicalimbo.common.config.LimboCommandMessages;
 import dev.scarday.identicalimbo.common.config.LimboConfigurationLoader;
 import dev.scarday.identicalimbo.common.config.VirtualServerDocument;
 import dev.scarday.identicalimbo.common.logging.LimboLogger;
-import dev.scarday.identicalimbo.common.provider.picolimbo.PicoLimboProvider;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,7 +43,6 @@ public abstract class AbstractLimboService implements LimboService, AutoCloseabl
         this.dataDirectory = dataDirectory;
         this.configura = configura;
         this.logger = logger;
-        this.providerRegistry.register(new PicoLimboProvider(logger));
     }
 
     public void start() {
